@@ -104,6 +104,7 @@ a {
   justify-content: center;
   padding-top: 100px;
   margin-bottom: 158px;
+  flex-wrap: wrap;
 }
 .main-title {
   font-size: 30px;
@@ -132,12 +133,6 @@ a {
   height: 100%;
   position: absolute;
   z-index: 1;
-}
-.first-img .vector-img {
-  height: 623px;
-  position: absolute;
-  top: -83px;
-  left: -100px;
 }
 .social {
   display: flex;
@@ -191,6 +186,7 @@ a {
   mix-blend-mode: multiply;
   position: absolute;
   z-index: -1;
+  animation: bubble 1s infinite;
 }
 .countdown:after {
   content: "";
@@ -204,6 +200,29 @@ a {
   bottom: 0px;
   right: -65px;
   z-index: -1;
+  animation: bubble-reverse 1s infinite;
+}
+@keyframes bubble {
+  0% {
+      transform: none;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: none;
+  }
+}
+@keyframes bubble-reverse {
+  0% {
+      transform: scale(1.1);
+  }
+  50% {
+    transform: none;
+  }
+  100% {
+    transform: scale(1.1);
+  }
 }
 .timer-description {
   padding-top: 120px;
@@ -240,15 +259,45 @@ a {
 .small {
   width: 20px;
   height: 20px;
+  animation: pulse_small 1s infinite;
 }
 .big {
   width: 48px;
   height: 48px;
   margin: 0 30px;
+  animation: pulse_big 1s infinite;
+}
+@keyframes pulse_small {
+  0% {
+    width: 20px;
+    height: 20px;
+  }
+  50% {
+    width: 48px;
+    height: 48px;
+  }
+  100% {
+    width: 20px;
+    height: 20px;
+  }
+}
+@keyframes pulse_big {
+  0% {
+    width: 48px;
+    height: 48px;
+  }
+  50% {
+    width: 20px;
+    height: 20px;
+  }
+  100% {
+    width: 48px;
+    height: 48px;
+  }
 }
 .dreams {
   display: flex;
-  justify-content: center;
+  justify-content: center;  
   margin-bottom: 158px;
 }
 .dream-block {
@@ -380,9 +429,10 @@ svg {
   display: none;
   background: rgba(1, 172, 180, 0.8);
   position: absolute;
-  width: 386px;
-  height: 386px;
-  top: 0px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   border-radius: inherit;
   z-index: 1;
   text-align: center;
@@ -484,14 +534,15 @@ and (max-width: 1199px) {
 @media only screen
 
 and (max-width: 949px) {
-  .header {
+  .header,
+  .header:after {
     display: none;
   }
   .first-screen {
-    padding-top: 140px;
+    padding: 140px 0 0;
     margin: 0;
     display: block;
-    width: 100%;
+    width: auto;
   }
   .main-title {
     position: fixed;
@@ -530,9 +581,11 @@ and (max-width: 949px) {
     right: 20px;
     top: 10px;
     left: auto;
+    bottom: auto;
   }
   .first-text {
-    margin: 0 20px;
+    padding: 0 20px;
+    margin: 0 0 126px;
     width: 100%;
   }
   .sub-title {
@@ -564,20 +617,31 @@ and (max-width: 949px) {
     font-size: 16px;
   }
   .mid-header {
-    margin: 66px auto 46px;
+    margin: 0 auto 46px;
     font-size: 30px;
     line-height: 48px;
   }
   .dreams {
     display: block;
     padding: 0 20px;
+    margin: 0 0 66px;
   }
   .dream-block {
     width: 100%;
+    height: auto;
+    padding: 30px;
     margin: 0 0 60px;
     pointer-events: none;
   }
+  .dream-block:last-child {
+    margin-bottom: 0;
+  }
+  .dream-img {
+    width: 100%;
+    position: static;
+  }
   .dream-text {
+    position: static;
     margin: 30px 0 10px;
   }
   .brands {
@@ -587,9 +651,10 @@ and (max-width: 949px) {
   .brand-block {
     height: 80px;
     width: 100%;
+    height: auto;
     padding: 0;
     border-radius: 0;
-    margin-bottom: 20px;
+    margin: 0 0 20px;
     display: flex;
     align-items: center;
     pointer-events: none;
@@ -601,5 +666,37 @@ and (max-width: 949px) {
     position: static;
     margin-left: 16px;
   }
-
+  .wishlist {
+    padding: 0 20px;
+    display: block;
+    padding-bottom: 1px;
+  }
+  .wish-block {
+    width: 100%;
+    pointer-events: none;
+    margin-bottom: 125px;
+  }
+  .wish-img {
+    width: inherit;
+    height: auto;
+  }
+  .wish-placeholder {
+    display: block;
+    background: 0;
+    top: 100%;
+    bottom: auto;
+    padding: 0;
+  }
+  .wish-placeholder svg *,
+  .wish-title {
+    display: none;
+  }
+  .wish-link {
+    position: absolute;
+    top: 20px;
+    margin: 0;
+  }
+  .footer {
+    display: none;
+  }
 }
