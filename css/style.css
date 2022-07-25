@@ -207,7 +207,7 @@ a {
       transform: none;
   }
   50% {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
   100% {
     transform: none;
@@ -215,13 +215,13 @@ a {
 }
 @keyframes bubble-reverse {
   0% {
-      transform: scale(1.1);
+      transform: scale(1.05);
   }
   50% {
     transform: none;
   }
   100% {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 }
 .timer-description {
